@@ -10,6 +10,11 @@ const todoPath = path.join(
     "../Database/Todo.json"
 );
 
+const historyPath = path.join(
+    __dirname,
+    "../Database/ValueHistory.json"
+);
+
 const { calculateValue } = require("../Utils/valueCalculator");
 
 async function getTodos(userId) {
@@ -22,8 +27,13 @@ async function getTodos(userId) {
 
     userTodos.forEach(todo => {
 
-        todo.current_value =
-            calculateValue(todo);
+        const newValue = calculateValue(todo);
+
+        if (todo.current_value !== newValue) {
+            todo.current_value = newValue;
+
+            saveValueHistory(todo.id, newValue);
+        }
 
         todo.updated_at =
             new Date().toISOString();
@@ -48,8 +58,18 @@ async function getTodo(userId, todoId) {
         throw new Error("Todo를 찾을 수 없습니다.");
     }
 
-    todo.current_value =
+    const newValue =
         calculateValue(todo);
+
+    if (todo.current_value !== newValue) {
+
+        todo.current_value = newValue;
+
+        saveValueHistory(
+            todo.id,
+            newValue
+        );
+    }
 
     todo.updated_at =
         new Date().toISOString();
@@ -140,6 +160,30 @@ async function deleteTodo(userId, todoId) {
     );
 
     writeJson(todoPath, filteredTodos);
+}
+
+async function saveValueHistory(todoId, value) {
+
+    const histories = readJson(historyPath);
+
+    const newHistory = {
+
+        id:
+            histories.length > 0
+                ? histories[histories.length - 1].id + 1
+                : 1,
+
+        todo_id: todoId,
+
+        value,
+
+        created_at:
+            new Date().toISOString()
+    };
+
+    histories.push(newHistory);
+
+    writeJson(historyPath, histories);
 }
 
 module.exports = {
