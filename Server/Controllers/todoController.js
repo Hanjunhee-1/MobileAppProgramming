@@ -39,6 +39,28 @@ async function getTodo(req, res) {
     }
 }
 
+// 해당 사용자의 특정 TODO 에 대한 ValueHistory 가져오기
+async function getHistories(req, res) {
+    try {
+
+        const histories =
+            await todoService.getHistories(
+                req.user.id,
+                req.params.id
+            );
+
+        return res.status(200).json(
+            histories
+        );
+
+    } catch (error) {
+
+        return res.status(400).json({
+            message: error.message
+        });
+    }
+}
+
 // TODO 생성하기
 async function createTodo(req, res) {
 
@@ -106,6 +128,7 @@ async function deleteTodo(req, res) {
 module.exports = {
     getTodos,
     getTodo,
+    getHistories,
     createTodo,
     updateTodo,
     deleteTodo

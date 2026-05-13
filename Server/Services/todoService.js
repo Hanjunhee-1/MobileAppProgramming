@@ -79,6 +79,43 @@ async function getTodo(userId, todoId) {
     return todo;
 }
 
+async function getHistories(userId, todoId) {
+    const todos =
+        readJson(todoPath);
+
+    const histories =
+        readJson(historyPath);
+
+    // Todo 존재 + 권한 확인
+    const todo = todos.find(
+        todo =>
+            todo.id === Number(todoId) &&
+            todo.user_id === userId
+    );
+
+    if (!todo) {
+        throw new Error(
+            "Todo를 찾을 수 없습니다."
+        );
+    }
+
+    const todoHistories =
+        histories.filter(
+            history =>
+                history.todo_id ===
+                Number(todoId)
+        );
+
+    // 날짜 오름차순 정렬
+    todoHistories.sort(
+        (a, b) =>
+            new Date(a.created_at) -
+            new Date(b.created_at)
+    );
+
+    return todoHistories;
+}
+
 async function createTodo(userId, body) {
 
     const todos = readJson(todoPath);
@@ -278,6 +315,7 @@ async function saveValueHistory(todoId, value) {
 module.exports = {
     getTodos,
     getTodo,
+    getHistories,
     createTodo,
     updateTodo,
     deleteTodo

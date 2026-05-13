@@ -20,6 +20,13 @@ router.get(
     todoController.getTodo
 );
 
+// 로그인한 사용자가 요청한 특정 TODO 에 대한 history 가져오기
+router.get(
+    "/:id/history",
+    authMiddleware,
+    todoController.getHistories
+);
+
 // TODO 추가하기
 router.post(
     "/",
