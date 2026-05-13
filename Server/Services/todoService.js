@@ -10,13 +10,28 @@ const todoPath = path.join(
     "../Database/Todo.json"
 );
 
+const { calculateValue } = require("../Utils/valueCalculator");
+
 async function getTodos(userId) {
 
     const todos = readJson(todoPath);
 
-    return todos.filter(
+    const userTodos = todos.filter(
         todo => todo.user_id === userId
     );
+
+    userTodos.forEach(todo => {
+
+        todo.current_value =
+            calculateValue(todo);
+
+        todo.updated_at =
+            new Date().toISOString();
+    });
+
+    writeJson(todoPath, todos);
+
+    return userTodos;
 }
 
 async function getTodo(userId, todoId) {
@@ -32,6 +47,14 @@ async function getTodo(userId, todoId) {
     if (!todo) {
         throw new Error("Todo를 찾을 수 없습니다.");
     }
+
+    todo.current_value =
+        calculateValue(todo);
+
+    todo.updated_at =
+        new Date().toISOString();
+
+    writeJson(todoPath, todos);
 
     return todo;
 }

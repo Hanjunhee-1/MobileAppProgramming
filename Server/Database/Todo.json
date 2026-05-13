@@ -10,11 +10,11 @@
         "importance": "HIGHEST",
         "is_completed": false,
         "base_value": 50,
-        "current_value": 72,
+        "current_value": 68,
         "earned_gold": 0,
         "user_id": 1,
         "created_at": "2026-05-13T00:00:00",
-        "updated_at": "2026-05-13T15:16:33.295Z",
+        "updated_at": "2026-05-13T15:44:20.851Z",
         "completed_at": null
     },
     {
@@ -28,11 +28,11 @@
         "importance": "LOWEST",
         "is_completed": false,
         "base_value": 50,
-        "current_value": 72,
+        "current_value": 35,
         "earned_gold": 0,
         "user_id": 1,
         "created_at": "2026-05-30T00:00:00",
-        "updated_at": "2026-05-30T09:00:00",
+        "updated_at": "2026-05-13T15:44:20.851Z",
         "completed_at": null
     },
     {
@@ -46,11 +46,11 @@
         "importance": "MID",
         "is_completed": false,
         "base_value": 50,
-        "current_value": 72,
+        "current_value": 46,
         "earned_gold": 0,
         "user_id": 1,
         "created_at": "2026-05-31T00:00:00",
-        "updated_at": "2026-05-31T09:00:00",
+        "updated_at": "2026-05-13T15:44:20.851Z",
         "completed_at": null
     }
 ]
