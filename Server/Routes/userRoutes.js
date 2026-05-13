@@ -9,7 +9,13 @@ const authMiddleware = require("../middleware/authMiddleware");
 router.get(
     "/me",
     authMiddleware,
-    userController.getMyInfo
+    userController.getMe
 );
+
+router.get(
+    "/myInfo",
+    authMiddleware,
+    userController.getMyInfo
+)
 
 module.exports = router;
