@@ -10,6 +10,11 @@ const todoPath = path.join(
     "../Database/Todo.json"
 );
 
+const userPath = path.join(
+    __dirname,
+    "../Database/User.json"
+);
+
 const historyPath = path.join(
     __dirname,
     "../Database/ValueHistory.json"
