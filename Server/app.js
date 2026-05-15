@@ -28,6 +28,6 @@ app.use("/todos", todoRoutes);
 // port 번호는 .env 파일을 따르되 3000 으로 고정
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on localhost:${PORT}`);
 })
