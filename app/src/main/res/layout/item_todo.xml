@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/todoCardView"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+
+    android:layout_margin="8dp"
+
+    app:cardCornerRadius="24dp"
+
+    app:cardBackgroundColor="#1E1E1E"
+
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/todoNameText"
+
+                android:layout_width="0dp"
+
+                android:layout_height="wrap_content"
+
+                android:layout_weight="1"
+
+                android:text="만약에 글자가 너무 길면 어떻게 될까? UI 가 살짝 찌그러질 수도 있을까?"
+
+                android:textColor="#FFFFFF"
+
+                android:textSize="22sp"
+
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/completeButton"
+
+                android:layout_width="40dp"
+
+                android:layout_height="40dp"
+
+                android:background="@android:color/transparent"
+
+                android:src="@drawable/ic_check"
+
+                android:contentDescription="완료" />
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+
+                android:layout_width="40dp"
+
+                android:layout_height="40dp"
+
+                android:layout_marginStart="8dp"
+
+                android:background="@android:color/transparent"
+
+                android:src="@android:drawable/ic_delete"
+
+                android:contentDescription="삭제" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#BDBDBD"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/valueText"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="Value: 82"
+
+            android:textColor="#FFD700"
+
+            android:textSize="18sp"
+
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/importanceText"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="최상"
+
+            android:textColor="#FF5252"
+
+            android:textSize="16sp"
+
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/ddayText"
+
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+
+            android:text="D-5"
+
+            android:textColor="#AAAAAA"
+
+            android:textSize="15sp"
+
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/startDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#81C784"
+            android:textSize="13sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/endDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#E57373"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
