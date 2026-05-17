@@ -19,10 +19,23 @@
 
 ## 사용한 기술 스택
 서버(로컬 서버로 직접 구현할 예정)
-- ExpressJS
+- NodeJS, ExpressJS
 
 프론트(안드로이드)
 - Kotlin
 
 ## 아키텍처
 (추후에 이미지로 생성할 예정)
+
+# 로컬서버 실행방법
+```bash
+    cd ./Server
+    npm install
+    npm run start
+```
+## `.env` 파일
+1. `Server` 디렉토리에 `.env` 파일을 생성하고 아래의 내용을 추가합니다.
+```
+    PORT=3000
+    JWT_SECRET=REPLACE_SECRET_THAT_YOU_WANT
+```
