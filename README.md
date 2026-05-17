@@ -39,7 +39,7 @@ Android ↔ Node.js (Express)
         JWT_SECRET=REPLACE_SECRET_THAT_YOU_WANT
     ```
 3. 아래의 스크립트를 입력하여 백엔드 서버를 실행합니다.
-```bash
-    npm install
-    npm run start
-```
+    ```bash
+        npm install
+        npm run start
+    ```
