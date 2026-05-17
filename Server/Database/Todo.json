@@ -1,21 +1,22 @@
 [
     {
         "id": 1,
-        "name": "이름을 바꿔보았어요",
-        "description": "공부할 것이 많네요... 데베개, 운체, 프언",
+        "name": "기말고사 시험공부",
+        "description": "기말고사 공부해야 합니다...",
         "time": {
             "start": "2026-05-13T00:00:00",
             "end": "2026-06-14T00:00:00"
         },
-        "importance": "HIGHEST",
-        "is_completed": false,
+        "importance": "MID",
+        "is_completed": true,
         "base_value": 50,
-        "current_value": 63,
+        "current_value": 47,
         "earned_gold": 0,
         "user_id": 1,
         "created_at": "2026-05-13T00:00:00",
-        "updated_at": "2026-05-13T15:52:13.659Z",
-        "completed_at": null
+        "updated_at": "2026-05-17T00:57:24.472Z",
+        "completed_at": "2026-05-17T00:31:28.736Z",
+        "reward_gold": 52
     },
     {
         "id": 2,
@@ -32,7 +33,7 @@
         "earned_gold": 0,
         "user_id": 1,
         "created_at": "2026-05-30T00:00:00",
-        "updated_at": "2026-05-13T15:52:13.677Z",
+        "updated_at": "2026-05-17T00:57:24.510Z",
         "completed_at": null
     },
     {
@@ -46,11 +47,11 @@
         "importance": "MID",
         "is_completed": false,
         "base_value": 50,
-        "current_value": 47,
+        "current_value": 49,
         "earned_gold": 0,
         "user_id": 1,
         "created_at": "2026-05-31T00:00:00",
-        "updated_at": "2026-05-13T15:52:13.701Z",
+        "updated_at": "2026-05-17T00:57:24.538Z",
         "completed_at": null
     }
 ]
