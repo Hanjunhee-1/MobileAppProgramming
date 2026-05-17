@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 
 import edu.skku.cs.personalproject.APIs.ApiClient
-import edu.skku.cs.personalproject.Activities.Login.TokenManager
+import edu.skku.cs.personalproject.DTOs.TokenManager
 import edu.skku.cs.personalproject.databinding.FragmentMyInfoBinding
 
 import kotlinx.coroutines.launch

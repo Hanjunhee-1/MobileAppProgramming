@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 
 import edu.skku.cs.personalproject.APIs.ApiClient
 import edu.skku.cs.personalproject.DTOs.Todo.UpdateTodoRequest
-import edu.skku.cs.personalproject.Activities.Login.TokenManager
+import edu.skku.cs.personalproject.DTOs.TokenManager
 import edu.skku.cs.personalproject.MainActivity
 import edu.skku.cs.personalproject.databinding.ActivityTodoEditBinding
 

@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import java.util.Calendar
 
 import edu.skku.cs.personalproject.APIs.ApiClient
-import edu.skku.cs.personalproject.Activities.Login.TokenManager
+import edu.skku.cs.personalproject.DTOs.TokenManager
 import edu.skku.cs.personalproject.DTOs.Todo.CreateTodoRequest
 import edu.skku.cs.personalproject.DTOs.Todo.TodoTime
 import edu.skku.cs.personalproject.R

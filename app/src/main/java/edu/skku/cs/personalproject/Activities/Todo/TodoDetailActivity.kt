@@ -12,7 +12,7 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 
 import edu.skku.cs.personalproject.APIs.ApiClient
-import edu.skku.cs.personalproject.Activities.Login.TokenManager
+import edu.skku.cs.personalproject.DTOs.TokenManager
 import edu.skku.cs.personalproject.databinding.ActivityTodoDetailBinding
 
 import kotlinx.coroutines.launch

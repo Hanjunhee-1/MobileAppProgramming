@@ -1,4 +1,4 @@
-package edu.skku.cs.personalproject.Activities.Login
+package edu.skku.cs.personalproject.DTOs
 
 import android.content.Context
 
