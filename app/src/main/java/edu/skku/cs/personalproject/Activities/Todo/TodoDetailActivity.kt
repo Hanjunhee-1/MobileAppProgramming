@@ -96,11 +96,12 @@ class TodoDetailActivity :
                 )
             }
 
-        loadValueHistory(todoId)
+        loadValueHistory(todoId, isCompleted)
     }
 
     private fun loadValueHistory(
-        todoId: Int
+        todoId: Int,
+        isCompleted: Boolean
     ) {
 
         val token =
@@ -126,10 +127,24 @@ class TodoDetailActivity :
                     return@launch
                 }
 
-                binding.currentValueText.text =
-                    "Current Value : ${
-                        histories.last().value
-                    }"
+                if (isCompleted) {
+
+                    val rewardGold =
+                        intent.getIntExtra(
+                            "reward_gold",
+                            0
+                        )
+
+                    binding.currentValueText.text =
+                        "Reward : ${
+                            rewardGold
+                        }"
+                } else {
+                    binding.currentValueText.text =
+                        "Current Value : ${
+                            histories.last().value
+                        }"
+                }
 
                 setupStatistics(histories)
 

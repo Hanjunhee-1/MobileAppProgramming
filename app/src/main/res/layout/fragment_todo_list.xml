@@ -65,6 +65,8 @@
 
             android:textSize="12sp"
 
+            android:visibility="gone"
+
             app:backgroundTint="#FFD700"
 
             app:cornerRadius="16dp"/>
@@ -111,16 +113,12 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
+            android:id="@+id/emptyText"
             android:layout_width="wrap_content"
-
             android:layout_height="wrap_content"
-
             android:text="할 일이 없습니다"
-
             android:textColor="#FFFFFF"
-
             android:textSize="22sp"
-
             android:layout_marginBottom="16dp"/>
 
         <com.google.android.material.button.MaterialButton

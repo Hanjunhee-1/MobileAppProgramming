@@ -43,7 +43,7 @@
 
         android:layout_height="wrap_content"
 
-        android:text="Current Value : 0"
+        android:text=""
 
         android:textColor="#FFD700"
 

@@ -68,8 +68,16 @@ class TodoAdapter(
         holder.binding.descriptionText.text =
             todo.description
 
-        holder.binding.valueText.text =
-            "Value: ${todo.current_value}"
+        if (todo.is_completed) {
+
+            holder.binding.valueText.text =
+                "Reward: ${todo.reward_gold}"
+
+        } else {
+
+            holder.binding.valueText.text =
+                "Value: ${todo.current_value}"
+        }
 
         holder.binding.importanceText.text =
             todo.importance
@@ -132,7 +140,6 @@ class TodoAdapter(
             LocalDate.now()
 
         // D-day 처리
-        // D-day 처리
         if (today.isBefore(startDate)) {
 
             holder.binding.ddayText.text =
@@ -150,28 +157,10 @@ class TodoAdapter(
                 "D-$dday"
         }
 
-        // 완료 여부 스타일 처리
+        // 완료 여부
         if (todo.is_completed) {
 
-            holder.binding.todoCardView
-                .setCardBackgroundColor(
-                    Color.parseColor("#B3E5FC")
-                )
-
-            holder.binding.todoNameText
-                .setTextColor(
-                    Color.parseColor("#0D47A1")
-                )
-
-            holder.binding.descriptionText
-                .setTextColor(
-                    Color.parseColor("#1565C0")
-                )
-
-            holder.binding.valueText
-                .setTextColor(
-                    Color.parseColor("#01579B")
-                )
+            holder.binding.todoCardView.alpha = 0.75f
 
             holder.binding.completeButton
                 .visibility = View.GONE
@@ -181,25 +170,7 @@ class TodoAdapter(
 
         } else {
 
-            holder.binding.todoCardView
-                .setCardBackgroundColor(
-                    Color.parseColor("#1E1E1E")
-                )
-
-            holder.binding.todoNameText
-                .setTextColor(
-                    Color.WHITE
-                )
-
-            holder.binding.descriptionText
-                .setTextColor(
-                    Color.parseColor("#BDBDBD")
-                )
-
-            holder.binding.valueText
-                .setTextColor(
-                    Color.parseColor("#FFD700")
-                )
+            holder.binding.todoCardView.alpha = 1.0f
 
             holder.binding.completeButton
                 .visibility = View.VISIBLE

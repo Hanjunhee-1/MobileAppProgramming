@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import edu.skku.cs.personalproject.Activities.Login.TokenManager
 import edu.skku.cs.personalproject.Activities.Todo.TodoDetailActivity
 import edu.skku.cs.personalproject.DTOs.Todo.Todo
 import edu.skku.cs.personalproject.DTOs.Todo.UpdateTodoRequest
+import edu.skku.cs.personalproject.R
 import edu.skku.cs.personalproject.databinding.FragmentTodoListBinding
 
 import kotlinx.coroutines.launch
@@ -108,6 +110,11 @@ class TodoListFragment : Fragment() {
                         todo.importance
                     )
 
+                    intent.putExtra(
+                        "reward_gold",
+                        todo.reward_gold
+                    )
+
                     startActivity(intent)
                 },
 
@@ -143,9 +150,15 @@ class TodoListFragment : Fragment() {
                 loadTodos()
             }
 
-        binding.toggleCompletedButton
-            .text =
-            "완료된 TODO 보기"
+        binding.createTodoButton
+            .setOnClickListener {
+
+                requireActivity()
+                    .findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(
+                        R.id.bottomNavigation
+                    )
+                    .selectedItemId = R.id.menu_create
+            }
 
         loadTodos()
     }
@@ -168,6 +181,17 @@ class TodoListFragment : Fragment() {
                         .getTodos(
                             "Bearer $token"
                         )
+
+                if (todos.isEmpty()) {
+
+                    binding.toggleCompletedButton
+                        .visibility = View.GONE
+
+                } else {
+
+                    binding.toggleCompletedButton
+                        .visibility = View.VISIBLE
+                }
 
                 val sortedTodos =
                     todos.sortedWith(
@@ -234,9 +258,27 @@ class TodoListFragment : Fragment() {
 
                     binding.todoRecyclerView
                         .visibility = View.GONE
-                }
 
-                else {
+                    if (showCompleted) {
+
+                        // 완료 TODO 화면
+                        binding.emptyText.text =
+                            "완료된 할 일이 없습니다"
+
+                        binding.createTodoButton
+                            .visibility = View.GONE
+
+                    } else {
+
+                        // 미완료 TODO 화면
+                        binding.emptyText.text =
+                            "할 일이 없습니다"
+
+                        binding.createTodoButton
+                            .visibility = View.VISIBLE
+                    }
+
+                } else {
 
                     binding.emptyLayout
                         .visibility = View.GONE
@@ -270,32 +312,43 @@ class TodoListFragment : Fragment() {
 
             try {
 
-                ApiClient
-                    .create()
-                    .updateTodo(
+                val response =
+                    ApiClient
+                        .create()
+                        .updateTodo(
 
-                        "Bearer $token",
+                            "Bearer $token",
 
-                        todo.id,
+                            todo.id,
 
-                        UpdateTodoRequest(
+                            UpdateTodoRequest(
 
-                            name =
-                                todo.name,
+                                name =
+                                    todo.name,
 
-                            description =
-                                todo.description,
+                                description =
+                                    todo.description,
 
-                            base_value =
-                                todo.base_value,
+                                base_value =
+                                    todo.base_value,
 
-                            importance =
-                                todo.importance,
+                                importance =
+                                    todo.importance,
 
-                            is_completed =
-                                true
+                                is_completed =
+                                    true
+                            )
                         )
-                    )
+
+                Toast.makeText(
+
+                    requireContext(),
+
+                    "TODO 완료! +${response.reward_gold} Gold 획득",
+
+                    Toast.LENGTH_LONG
+
+                ).show()
 
                 loadTodos()
 
