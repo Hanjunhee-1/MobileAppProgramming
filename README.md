@@ -28,14 +28,18 @@
 Android ↔ Node.js (Express)
 
 # 로컬서버 실행방법
+1. `Server` 디렉토리로 이동합니다.
+    ```bash
+        cd ./Server
+    ```
+
+2. `Server` 디렉토리에 `.env` 파일을 생성하고 아래와 같이 입력합니다.
+    ```
+        PORT=3000
+        JWT_SECRET=REPLACE_SECRET_THAT_YOU_WANT
+    ```
+3. 아래의 스크립트를 입력하여 백엔드 서버를 실행합니다.
 ```bash
-    cd ./Server
     npm install
     npm run start
-```
-## `.env` 파일
-1. `Server` 디렉토리에 `.env` 파일을 생성하고 아래의 내용을 추가합니다.
-```
-    PORT=3000
-    JWT_SECRET=REPLACE_SECRET_THAT_YOU_WANT
 ```
