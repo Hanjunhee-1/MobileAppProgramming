@@ -145,8 +145,6 @@ async function createTodo(userId, body) {
 
         current_value: body.base_value,
 
-        earned_gold: 0,
-
         completed_at: null,
 
         user_id: userId,
