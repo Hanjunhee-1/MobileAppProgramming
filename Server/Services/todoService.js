@@ -32,8 +32,10 @@ async function getTodos(userId) {
 
     userTodos.forEach(todo => {
 
+        const newValue = calculateValue(todo);
+
         if (todo.is_completed === false && todo.current_value !== newValue) {
-            todo.current_value = calculateValue(todo);
+            todo.current_value = newValue;
 
             saveValueHistory(todo.id, newValue);
         }
@@ -61,9 +63,11 @@ async function getTodo(userId, todoId) {
         throw new Error("Todo를 찾을 수 없습니다.");
     }
 
+    const newValue = calculateValue(todo);
+
     if (todo.is_completed === false && todo.current_value !== newValue) {
 
-        todo.current_value = calculateValue(todo);
+        todo.current_value = newValue;
 
         saveValueHistory(
             todo.id,
