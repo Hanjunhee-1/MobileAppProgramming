@@ -25,7 +25,7 @@
 - Kotlin
 
 ## 아키텍처
-(추후에 이미지로 생성할 예정)
+Android ↔ Node.js (Express)
 
 # 로컬서버 실행방법
 ```bash
