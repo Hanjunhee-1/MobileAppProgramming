@@ -1,33 +1,9 @@
-# 모앱실 개인과제
-## 제목
-시간은 금이다
+# 모앱실 개인과제 (Server)
+## environment
+- Node.js 설치 필요!! [https://nodejs.org]
+- Node.js v18 이상 권장
 
-## 상세설명
-"금이 '시세' 에 따라서 값어치가 달라지는 것처럼 여러분의 시간 또한 지금 '무엇' 을 하느냐에 따라서 값어치가 달라집니다."
-
-나의 할 일을 관리하여 지금 무슨 일을 하느냐에 따라 값어치를 매겨줍니다. 마감기한이 얼마남지 않을수록 중요도에 비례하여 값어치가 계속해서 상승하거나 줄어듭니다. 
-
-처음에 할 일을 입력할 때 해당 일에 대한 값어치를 사용자가 스스로 입력할 수 있습니다. (0 ~ 100)
-중요도 또한 입력할 수 있습니다. (최하, 하, 중하, 중, 중상, 상, 최상)
-
-할 일에 대한 값어치를 라인 차트로 보여줍니다.
-마감일이 가까워질수록 값어치가 상승합니다.
-
-마감기한이 얼마남지 않은 상황에서 해당 할 일을 완료처리할 경우 값어치에 따른 Gold 를 얻을 수 있습니다.
-
-자신이 마치 부자가 된 듯한 느낌을 느껴보세요.
-
-## 사용한 기술 스택
-서버(로컬 서버로 직접 구현할 예정)
-- NodeJS, ExpressJS
-
-프론트(안드로이드)
-- Kotlin
-
-## 아키텍처
-Android ↔ Node.js (Express)
-
-# 로컬서버 실행방법
+## 로컬서버 실행방법
 1. `Server` 디렉토리로 이동합니다.
     ```bash
         cd ./Server
@@ -43,3 +19,29 @@ Android ↔ Node.js (Express)
         npm install
         npm run start
     ```
+
+## 구조 설명
+1. Config
+    - `jwt.js`: jwt secret key 설정
+2. Controllers
+    - `authController.js`: 인증 및 인가 관련
+    - `todoController.js`: todo 관련 CRUD
+    - `userController.js`: user 관련 (myInfo)
+3. Databse
+    - `Importance.js`: 중요도
+    - `Todo.json`: todo 데이터 구조
+    - `User.json`: user 데이터 구조
+    - `ValueHistory.json`: value history 데이터 구조
+4. Middleware
+    - `authMiddleware.js`: jwt 토큰 다루는 곳
+5. Routes
+    - `authRoutes.js`: auth 관련 라우팅
+    - `todoRoutes.js`: todo 관련 라우팅
+    - `userRoutes.js`: user 관련 라우팅
+6. Services
+    - `authService.js`: auth 관련 비즈니스 로직
+    - `todoService.js`: todo 관련 비즈니스 로직
+    - `userService.js`: user 관련 비즈니스 로직
+7. Utils
+    - `fileUtil.js`: json 데이터베이스 읽기/쓰기
+    - `valueCalculator.js`: value 값 계산
