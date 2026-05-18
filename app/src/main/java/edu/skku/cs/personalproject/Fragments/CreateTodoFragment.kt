@@ -445,5 +445,6 @@ class CreateTodoFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         clearInputs()
+        selectedStartDate = null
     }
 }
