@@ -441,4 +441,9 @@ class CreateTodoFragment : Fragment() {
 
         _binding = null
     }
+
+    override fun onStop() {
+        super.onStop()
+        clearInputs()
+    }
 }
