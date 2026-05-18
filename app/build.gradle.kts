@@ -1,5 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
+
+    // Google Service
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -83,4 +86,13 @@ dependencies {
 
     // Chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:34.13.0"))
+
+    // Firebase Authentication (Firebase 내장 구글 로그인을 지원하는 인증 라이브러리)
+    implementation("com.google.firebase:firebase-auth")
+
+    // Google Play Services Auth (구글 로그인 버튼 클릭 시 계정 선택 창을 띄워주는 최신 라이브러리)
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 }

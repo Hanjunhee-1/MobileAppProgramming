@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "535142894304",
+    "project_id": "map-timeisgold",
+    "storage_bucket": "map-timeisgold.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:535142894304:android:542ffcff7b6bf16cca1e85",
+        "android_client_info": {
+          "package_name": "edu.skku.cs.personalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "535142894304-m1caqkc8t8q0n5met5b75ss7m4g8cjjm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDId1GvjSvi0oKxrK-bsO3zStcYhIImJtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "535142894304-m1caqkc8t8q0n5met5b75ss7m4g8cjjm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
