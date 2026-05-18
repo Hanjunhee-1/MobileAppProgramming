@@ -1,7 +1,6 @@
 package edu.skku.cs.personalproject.APIs
 
 import edu.skku.cs.personalproject.DTOs.History.ValueHistory
-import edu.skku.cs.personalproject.DTOs.Login.LoginRequest
 import edu.skku.cs.personalproject.DTOs.Login.LoginResponse
 import edu.skku.cs.personalproject.DTOs.Todo.CreateTodoRequest
 import edu.skku.cs.personalproject.DTOs.Todo.Todo
@@ -20,10 +19,10 @@ interface ApiService {
 
     // localserver 에 API 요청보냄
 
-    @POST("auth/login")
-    suspend fun login(
+    @POST("auth/google")
+    suspend fun googleLogin(
 
-        @Body request: LoginRequest
+        @Body body: Map<String, String>
 
     ): LoginResponse
 

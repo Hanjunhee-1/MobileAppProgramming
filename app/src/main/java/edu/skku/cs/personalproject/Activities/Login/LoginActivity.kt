@@ -2,6 +2,7 @@ package edu.skku.cs.personalproject.Activities.Login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import edu.skku.cs.personalproject.APIs.ApiClient
 import edu.skku.cs.personalproject.Activities.Splash.SplashActivity
-import edu.skku.cs.personalproject.DTOs.Login.LoginRequest
 import edu.skku.cs.personalproject.DTOs.TokenManager
 import edu.skku.cs.personalproject.databinding.ActivityLoginBinding
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import edu.skku.cs.personalproject.R
 
 import kotlinx.coroutines.launch
 
@@ -22,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var tokenManager:
             TokenManager
+
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(
         savedInstanceState: Bundle?
@@ -38,59 +46,63 @@ class LoginActivity : AppCompatActivity() {
 
         tokenManager =
             TokenManager(this)
+        Log.d("default_web_client_id", "${getString(R.string.default_web_client_id)}")
+        val gso =
 
-        binding.loginButton.setOnClickListener {
+            GoogleSignInOptions.Builder(
+                GoogleSignInOptions.DEFAULT_SIGN_IN
+            )
 
-            login()
-        }
+                .requestIdToken(
+                    getString(
+                        R.string.default_web_client_id
+                    )
+                )
+
+                .requestEmail()
+
+                .build()
+
+        googleSignInClient =
+
+            GoogleSignIn.getClient(
+                this,
+                gso
+            )
+
+        binding.googleLoginButton
+            .setOnClickListener {
+
+                signIn()
+            }
     }
 
-    private fun login() {
+    private fun signIn() {
 
-        val id =
-            binding.idEditText.text
-                .toString()
-                .trim()
+        val signInIntent =
+            googleSignInClient.signInIntent
 
-        val password =
-            binding.passwordEditText.text
-                .toString()
-                .trim()
+        startActivityForResult(
+            signInIntent,
+            1000
+        )
+    }
 
-        // validation
-        if (id.isBlank()) {
-
-            Toast.makeText(
-                this,
-                "아이디를 입력하세요",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        if (password.isBlank()) {
-
-            Toast.makeText(
-                this,
-                "비밀번호를 입력하세요",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
+    private fun loginWithServer(
+        idToken: String
+    ) {
 
         lifecycleScope.launch {
 
             try {
 
                 val response =
+
                     ApiClient
                         .create()
-                        .login(
-                            LoginRequest(
-                                id,
-                                password
+                        .googleLogin(
+                            mapOf(
+                                "idToken" to idToken
                             )
                         )
 
@@ -99,14 +111,21 @@ class LoginActivity : AppCompatActivity() {
                 )
 
                 Toast.makeText(
+
                     this@LoginActivity,
+
                     "로그인 성공",
+
                     Toast.LENGTH_SHORT
+
                 ).show()
 
                 startActivity(
+
                     Intent(
+
                         this@LoginActivity,
+
                         SplashActivity::class.java
                     )
                 )
@@ -118,9 +137,68 @@ class LoginActivity : AppCompatActivity() {
                 e.printStackTrace()
 
                 Toast.makeText(
+
                     this@LoginActivity,
-                    e.message,
+
+                    "서버 로그인 실패",
+
                     Toast.LENGTH_LONG
+
+                ).show()
+            }
+        }
+    }
+
+    override fun onActivityResult(
+
+        requestCode: Int,
+
+        resultCode: Int,
+
+        data: Intent?
+
+    ) {
+
+        super.onActivityResult(
+            requestCode,
+            resultCode,
+            data
+        )
+
+        if (requestCode == 1000) {
+
+            val task =
+                GoogleSignIn.getSignedInAccountFromIntent(
+                    data
+                )
+
+            try {
+
+                val account =
+                    task.getResult(
+                        ApiException::class.java
+                    )
+
+                val idToken =
+                    account.idToken
+
+                if (idToken != null) {
+
+                    loginWithServer(idToken)
+                }
+
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+
+                Toast.makeText(
+
+                    this,
+
+                    "Google 로그인 실패",
+
+                    Toast.LENGTH_SHORT
+
                 ).show()
             }
         }
