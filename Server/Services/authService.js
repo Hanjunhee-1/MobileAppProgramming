@@ -10,7 +10,8 @@ const client = new OAuth2Client(
 
 const { readJson, writeJson } = require("../utils/fileUtil");
 
-const userPath = "../Database/User.json"
+// 항상 package.json 의 "main" 을 기준으로 하기 때문에 경로를 잘 설정해주어야 함. 
+const userPath = "./Database/User.json"
 
 async function googleLogin(idToken) {
     // Google Token 검증
