@@ -13,6 +13,7 @@
     ```
         PORT=3000
         JWT_SECRET=REPLACE_SECRET_THAT_YOU_WANT
+        GOOGLE_CLIENT_ID=이건 공개못함
     ```
 3. 아래의 스크립트를 입력하여 백엔드 서버를 실행합니다.
     ```bash
