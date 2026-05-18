@@ -1,42 +1,83 @@
+const { OAuth2Client } = require("google-auth-library");
+
 const jwt = require("jsonwebtoken");
 
 const { SECRET_KEY } = require("../config/jwt");
 
-const { readJson } = require("../utils/fileUtil");
+const client = new OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID
+);
 
-async function login(body) {
+const { readJson, writeJson } = require("../utils/fileUtil");
 
-    const { name, password } = body;
+const userPath = "../Database/User.json"
 
-    const users = readJson("./Database/User.json");
+async function googleLogin(idToken) {
+    // Google Token 검증
+    const ticket =
+        await client.verifyIdToken({
 
-    const user = users.find(
-        user =>
-            user.name === name &&
-            user.password === password
+            idToken,
+
+            audience:
+                process.env.GOOGLE_CLIENT_ID
+        });
+
+    const payload = ticket.getPayload();
+
+    const users = readJson(userPath);
+
+    // email 기준으로 사용자 탐색
+    let user = users.find(
+        user => user.email === payload.email
     );
 
+    // 최초 로그인 시 자동 회원가입
     if (!user) {
-        throw new Error("아이디 또는 비밀번호가 올바르지 않습니다.");
+        user = {
+            id : users.length > 0
+                ? users[users.length - 1].id + 1
+                : 1,
+            
+            name: payload.name,
+
+            email: payload.email,
+
+            total_gold: 0
+        };
+
+        users.push(user);
+
+        writeJson(
+            userPath,
+            users
+        );
     }
 
-    const token = jwt.sign(
-        {
-            id: user.id,
-            name: user.name
-        },
-        SECRET_KEY,
-        {
-            expiresIn: "1h"
-        }
-    );
+    // JWT 생성
+    const token = 
+        jwt.sign( 
+
+            {
+                id: user.id,
+                name: user.name,
+                email: user.email
+            },
+
+            SECRET_KEY,
+
+            {
+                expiresIn: "1h"
+            }
+        );
 
     return {
-        message: "로그인 성공",
-        token
+        message: "Google 로그인 성공",
+        token,
+        user
     };
 }
 
 module.exports = {
-    login
+    googleLogin
 };
